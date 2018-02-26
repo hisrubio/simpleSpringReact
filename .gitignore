@@ -1,0 +1,12 @@
+### Eclipse ###
+
+.metadata
+/bin
+/build
+/.settings/
+.project
+.classpath
+/target
+/logs
+/node_modules
+*test.mv.db
