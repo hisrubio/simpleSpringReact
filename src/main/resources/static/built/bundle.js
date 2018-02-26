@@ -24350,15 +24350,13 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _userActions = __webpack_require__(224);
+	var _FormularioElemento = __webpack_require__(224);
 	
-	var _AddUserForm = __webpack_require__(225);
+	var _FormularioElemento2 = _interopRequireDefault(_FormularioElemento);
 	
-	var _AddUserForm2 = _interopRequireDefault(_AddUserForm);
+	var _ElementoList = __webpack_require__(226);
 	
-	var _UserList = __webpack_require__(226);
-	
-	var _UserList2 = _interopRequireDefault(_UserList);
+	var _ElementoList2 = _interopRequireDefault(_ElementoList);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -24384,8 +24382,8 @@
 	      return _react2.default.createElement(
 	        "div",
 	        { className: "text-center" },
-	        _react2.default.createElement(_AddUserForm2.default, null),
-	        _react2.default.createElement(_UserList2.default, null)
+	        _react2.default.createElement(_FormularioElemento2.default, null),
+	        _react2.default.createElement(_ElementoList2.default, null)
 	      );
 	    }
 	  }]);
@@ -24397,48 +24395,6 @@
 
 /***/ }),
 /* 224 */
-/***/ (function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.fetchUsers = fetchUsers;
-	exports.addUser = addUser;
-	function fetchUsers() {
-	
-	    fetch('/api/v1/user/list/').then(function (response) {
-	        console.log(response.data);
-	        return response.data;
-	    }).then(function (data) {
-	        console.log(data);
-	    });
-	}
-	
-	function addUser(json) {
-	
-	    var data = new FormData();
-	    data.append("json", JSON.stringify(json));
-	
-	    console.log(json);
-	    fetch('/api/v1/user/create/', {
-	        method: "POST",
-	        headers: {
-	            'Accept': 'application/json',
-	            'Content-Type': 'application/json'
-	        },
-	        body: JSON.stringify(json)
-	    }).then(function (response) {
-	        console.log(response.data);
-	        return response.data;
-	    }).then(function (data) {
-	        console.log(data);
-	    });
-	}
-
-/***/ }),
-/* 225 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -24454,7 +24410,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _userActions = __webpack_require__(224);
+	var _elementoActions = __webpack_require__(225);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -24466,25 +24422,24 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var AddUserForm = function (_React$Component) {
-	  _inherits(AddUserForm, _React$Component);
+	var FormularioElemento = function (_React$Component) {
+	  _inherits(FormularioElemento, _React$Component);
 	
-	  function AddUserForm() {
-	    _classCallCheck(this, AddUserForm);
+	  function FormularioElemento() {
+	    _classCallCheck(this, FormularioElemento);
 	
-	    var _this = _possibleConstructorReturn(this, (AddUserForm.__proto__ || Object.getPrototypeOf(AddUserForm)).call(this));
+	    var _this = _possibleConstructorReturn(this, (FormularioElemento.__proto__ || Object.getPrototypeOf(FormularioElemento)).call(this));
 	
 	    _this.state = {
 	
-	      nombre: "",
-	      apellido: "",
-	      dni: ""
+	      name: "",
+	      estado: ""
 	
 	    };
 	    return _this;
 	  }
 	
-	  _createClass(AddUserForm, [{
+	  _createClass(FormularioElemento, [{
 	    key: "handleChange",
 	    value: function handleChange(event) {
 	      this.setState(_defineProperty({}, event.target.name, event.target.value));
@@ -24495,13 +24450,12 @@
 	      if (event.keyCode == 13) {
 	        // If enter is pressed
 	        this.addUser();
-	        console.log("item inserted");
 	      }
 	    }
 	  }, {
 	    key: "addUser",
 	    value: function addUser() {
-	      (0, _userActions.addUser)(this.state);
+	      (0, _elementoActions.addElemento)(this.state);
 	    }
 	  }, {
 	    key: "render",
@@ -24517,21 +24471,15 @@
 	          "div",
 	          null,
 	          _react2.default.createElement("input", { type: "text", className: "form-control",
-	            name: "nombre",
-	            placeholder: "Add a new user name...",
-	            value: this.state.nombre,
+	            name: "name",
+	            placeholder: "anade un elemento",
+	            value: this.state.name,
 	            onChange: this.handleChange.bind(this),
 	            onKeyDown: this.keyPressed.bind(this) }),
 	          _react2.default.createElement("input", { type: "text", className: "form-control",
-	            name: "apellido",
-	            placeholder: "Add a new user apellido...",
-	            value: this.state.apellido,
-	            onChange: this.handleChange.bind(this),
-	            onKeyDown: this.keyPressed.bind(this) }),
-	          _react2.default.createElement("input", { type: "text", className: "form-control",
-	            placeholder: "Add a new user document id...",
-	            name: "dni",
-	            value: this.state.dni,
+	            name: "estado",
+	            placeholder: "anade un estado",
+	            value: this.state.estado,
 	            onChange: this.handleChange.bind(this),
 	            onKeyDown: this.keyPressed.bind(this) })
 	        ),
@@ -24541,17 +24489,59 @@
 	          _react2.default.createElement(
 	            "button",
 	            { className: "btn btn-default", type: "button", onClick: this.addUser.bind(this) },
-	            "Insert User"
+	            "Insert Elementos"
 	          )
 	        )
 	      );
 	    }
 	  }]);
 	
-	  return AddUserForm;
+	  return FormularioElemento;
 	}(_react2.default.Component);
 	
-	exports.default = AddUserForm;
+	exports.default = FormularioElemento;
+
+/***/ }),
+/* 225 */
+/***/ (function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.fetchUsers = fetchUsers;
+	exports.addElemento = addElemento;
+	function fetchUsers() {
+	
+	    fetch('/api/v1/element/list/').then(function (response) {
+	        console.log(response.data);
+	        return response.data;
+	    }).then(function (data) {
+	        console.log(data);
+	    });
+	}
+	
+	function addElemento(json) {
+	
+	    var data = new FormData();
+	    data.append("json", JSON.stringify(json));
+	
+	    console.log(json);
+	    fetch('/api/v1/element/create/', {
+	        method: "POST",
+	        headers: {
+	            'Accept': 'application/json',
+	            'Content-Type': 'application/json'
+	        },
+	        body: JSON.stringify(json)
+	    }).then(function (response) {
+	        console.log(response.data);
+	        return response.data;
+	    }).then(function (data) {
+	        console.log(data);
+	    });
+	}
 
 /***/ }),
 /* 226 */
@@ -24570,13 +24560,13 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _UserItem = __webpack_require__(227);
+	var _Elemento = __webpack_require__(227);
 	
-	var _UserItem2 = _interopRequireDefault(_UserItem);
+	var _Elemento2 = _interopRequireDefault(_Elemento);
 	
-	var _UserCount = __webpack_require__(229);
+	var _ElementoCount = __webpack_require__(229);
 	
-	var _UserCount2 = _interopRequireDefault(_UserCount);
+	var _ElementoCount2 = _interopRequireDefault(_ElementoCount);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -24586,58 +24576,58 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var UserList = function (_React$Component) {
-		_inherits(UserList, _React$Component);
+	var ElementoList = function (_React$Component) {
+		_inherits(ElementoList, _React$Component);
 	
-		function UserList(props) {
-			_classCallCheck(this, UserList);
+		function ElementoList(props) {
+			_classCallCheck(this, ElementoList);
 	
-			var _this = _possibleConstructorReturn(this, (UserList.__proto__ || Object.getPrototypeOf(UserList)).call(this, props));
+			var _this = _possibleConstructorReturn(this, (ElementoList.__proto__ || Object.getPrototypeOf(ElementoList)).call(this, props));
 	
-			_this.state = { users: [] };
+			_this.state = { elementos: [] };
 			return _this;
 		}
 	
-		_createClass(UserList, [{
+		_createClass(ElementoList, [{
 			key: "render",
 			value: function render() {
 				var _this2 = this;
 	
-				if (this.state.users.length == 0) {
-					fetch('/api/v1/user/list/').then(function (response) {
+				if (this.state.elementos.length == 0) {
+					fetch('/api/v1/element/list/').then(function (response) {
 						return response.json();
-					}).then(function (user) {
-						_this2.setState({ users: user });
+					}).then(function (elemento) {
+						_this2.setState({ elementos: elemento });
 					});
 				}
 	
-				if (this.state.users.length > 0) {
+				if (this.state.elementos.length > 0) {
 	
-					var userItems = [];
-					this.state.users.forEach(function (usuario) {
-						userItems.push(_react2.default.createElement(_UserItem2.default, { user: usuario }));
+					var vectorElementos = [];
+					this.state.elementos.forEach(function (elementoA) {
+						vectorElementos.push(_react2.default.createElement(_Elemento2.default, { elemento: elementoA }));
 					});
 	
 					return _react2.default.createElement(
 						"div",
 						null,
-						userItems,
-						_react2.default.createElement(_UserCount2.default, { count: userItems.length })
+						vectorElementos,
+						_react2.default.createElement(_ElementoCount2.default, { count: vectorElementos.length })
 					);
 				} else {
 					return _react2.default.createElement(
 						"p",
 						{ className: "text-center" },
-						"Loading users..."
+						"Loading elementos..."
 					);
 				}
 			}
 		}]);
 	
-		return UserList;
+		return ElementoList;
 	}(_react2.default.Component);
 	
-	exports.default = UserList;
+	exports.default = ElementoList;
 
 /***/ }),
 /* 227 */
@@ -24656,9 +24646,9 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Delete = __webpack_require__(228);
+	var _Boton = __webpack_require__(228);
 	
-	var _Delete2 = _interopRequireDefault(_Delete);
+	var _Boton2 = _interopRequireDefault(_Boton);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -24668,40 +24658,38 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var UserItem = function (_React$Component) {
-	  _inherits(UserItem, _React$Component);
+	var Elemento = function (_React$Component) {
+	  _inherits(Elemento, _React$Component);
 	
-	  function UserItem(props) {
-	    _classCallCheck(this, UserItem);
+	  function Elemento(props) {
+	    _classCallCheck(this, Elemento);
 	
-	    return _possibleConstructorReturn(this, (UserItem.__proto__ || Object.getPrototypeOf(UserItem)).call(this, props));
+	    return _possibleConstructorReturn(this, (Elemento.__proto__ || Object.getPrototypeOf(Elemento)).call(this, props));
 	  }
 	
-	  _createClass(UserItem, [{
+	  _createClass(Elemento, [{
 	    key: "render",
 	    value: function render() {
-	      var user = this.props.user;
+	      var elemento = this.props.elemento;
 	
 	
 	      return _react2.default.createElement(
 	        "div",
-	        { className: "well col-md-4 col-md-offset-4", key: user.dni },
-	        "nombre: ",
-	        user.nombre,
-	        " apellido: ",
-	        user.apellido,
-	        " dni: ",
-	        user.dni,
+	        { className: "well col-md-4 col-md-offset-4", key: elemento.name },
+	        "name: ",
+	        elemento.name,
+	        " estado: ",
+	        elemento.estado,
 	        _react2.default.createElement("br", null),
-	        _react2.default.createElement(_Delete2.default, { id: user.dni })
+	        _react2.default.createElement(_Boton2.default, { id: elemento.name })
 	      );
 	    }
 	  }]);
 	
-	  return UserItem;
+	  return Elemento;
 	}(_react2.default.Component);
 	
-	exports.default = UserItem;
+	exports.default = Elemento;
 
 /***/ }),
 /* 228 */
@@ -24728,22 +24716,23 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var Delete = function (_React$Component) {
-			_inherits(Delete, _React$Component);
+	var Boton = function (_React$Component) {
+			_inherits(Boton, _React$Component);
 	
-			function Delete(props) {
-					_classCallCheck(this, Delete);
+			function Boton(props) {
+					_classCallCheck(this, Boton);
 	
-					var _this = _possibleConstructorReturn(this, (Delete.__proto__ || Object.getPrototypeOf(Delete)).call(this, props));
+					var _this = _possibleConstructorReturn(this, (Boton.__proto__ || Object.getPrototypeOf(Boton)).call(this, props));
 	
-					_this.state = { id: props.id };
+					_this.state = { name: props.id };
 					return _this;
 			}
 	
-			_createClass(Delete, [{
-					key: "delete",
-					value: function _delete(event) {
-							fetch('/api/v1/user/delete/user/?id=' + this.state.id);
+			_createClass(Boton, [{
+					key: "boton",
+					value: function boton(event) {
+							console.log(this.state.name);
+							fetch('/api/v1/element/cambiar/?id=' + this.state.name);
 					}
 			}, {
 					key: "render",
@@ -24751,16 +24740,16 @@
 	
 							return _react2.default.createElement(
 									"button",
-									{ onClick: this.delete.bind(this) },
-									"borrar dni"
+									{ onClick: this.boton.bind(this) },
+									"cambiar estado"
 							);
 					}
 			}]);
 	
-			return Delete;
+			return Boton;
 	}(_react2.default.Component);
 	
-	exports.default = Delete;
+	exports.default = Boton;
 
 /***/ }),
 /* 229 */
@@ -24787,19 +24776,19 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var UserCount = function (_React$Component) {
-		_inherits(UserCount, _React$Component);
+	var ElementoCount = function (_React$Component) {
+		_inherits(ElementoCount, _React$Component);
 	
-		function UserCount(props) {
-			_classCallCheck(this, UserCount);
+		function ElementoCount(props) {
+			_classCallCheck(this, ElementoCount);
 	
-			var _this = _possibleConstructorReturn(this, (UserCount.__proto__ || Object.getPrototypeOf(UserCount)).call(this, props));
+			var _this = _possibleConstructorReturn(this, (ElementoCount.__proto__ || Object.getPrototypeOf(ElementoCount)).call(this, props));
 	
 			_this.state = { count: props.count };
 			return _this;
 		}
 	
-		_createClass(UserCount, [{
+		_createClass(ElementoCount, [{
 			key: "render",
 			value: function render() {
 	
@@ -24813,10 +24802,10 @@
 			}
 		}]);
 	
-		return UserCount;
+		return ElementoCount;
 	}(_react2.default.Component);
 	
-	exports.default = UserCount;
+	exports.default = ElementoCount;
 
 /***/ })
 /******/ ]);

@@ -3,7 +3,7 @@
 export function fetchUsers() {
 
 
-    fetch('/api/v1/user/list/')
+    fetch('/api/v1/element/list/')
         .then((response) => {
             console.log(response.data);
             return response.data;
@@ -14,14 +14,14 @@ export function fetchUsers() {
 
 }
 
-export function addUser(json) {
+export function addElemento(json) {
 
 
     var data = new FormData();
     data.append("json", JSON.stringify(json));
 
     console.log(json)
-    fetch('/api/v1/user/create/', {
+    fetch('/api/v1/element/create/', {
         method: "POST",
         headers: {
             'Accept': 'application/json',

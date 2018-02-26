@@ -1,7 +1,6 @@
 import React from "react"
-import { addUser } from "../actions/userActions"
-import AddUserForm from "./AddUserForm"
-import UserList from "./UserList"
+import FormularioElemento from "./FormularioElemento"
+import ElementoList from "./ElementoList"
 
 export default class Layout extends React.Component {
 
@@ -9,8 +8,8 @@ export default class Layout extends React.Component {
    
     return (
       <div class="text-center">
-        <AddUserForm />
-        <UserList />
+        <FormularioElemento />
+        <ElementoList />
       </div>
     )
   }

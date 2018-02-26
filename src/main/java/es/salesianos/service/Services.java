@@ -10,7 +10,7 @@ public interface Services {
 
 	void insertElement(Elemento elemento);
 
-	void updateState(Elemento elemento);
-	
+	void updateState(String estado,String id);
+
 	List<Elemento> listElementsByState(String estado);
 }

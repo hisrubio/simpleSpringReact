@@ -35,22 +35,27 @@ public class ElementoRepository {
 		namedJdbcTemplate.update(sql, params);
 	}
 
-	public Optional<Elemento> search(Elemento elemento) {
-		String sql = "SELECT * FROM Elementos WHERE name = ?";
-		log.debug("ejecutando la consulta: " + sql);
-		Elemento element= null;
-		try {
-			element = (Elemento) jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper(Elemento.class), elemento.getName());
-		} catch (EmptyResultDataAccessException e) {
-			log.error("error", e);
-		}
-		return Optional.ofNullable(element);
+//	public Optional<Elemento> search(Elemento elemento) {
+//		String sql = "SELECT * FROM Elementos WHERE name = ?";
+//		log.debug("ejecutando la consulta: " + sql);
+//		Elemento element= null;
+//		try {
+//			element = (Elemento) jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper(Elemento.class), elemento.getName());
+//		} catch (EmptyResultDataAccessException e) {
+//			log.error("error", e);
+//		}
+//		return Optional.ofNullable(element);
+//
+//	}
 
-	}
-
-	public void updateState(Elemento elemento) {
+//	public void updateState(Elemento elemento) {
+//		String sql = "UPDATE Elementos SET " + "Estado = ? WHERE name = ?";
+//		jdbcTemplate.update(sql, elemento.getEstado(), elemento.getName());
+//	}
+	
+	public void updateState(String estado,String id) {
 		String sql = "UPDATE Elementos SET " + "Estado = ? WHERE name = ?";
-		jdbcTemplate.update(sql, elemento.getEstado(), elemento.getName());
+		jdbcTemplate.update(sql, estado, id);
 	}
 
 	public List<Elemento> listElementsByState(String estado) {

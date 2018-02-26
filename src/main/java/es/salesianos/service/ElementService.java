@@ -25,8 +25,8 @@ public class ElementService implements es.salesianos.service.Services {
 	}
 
 	@Override
-	public void updateState(Elemento elemento) {
-		repository.updateState(elemento);
+	public void updateState(String estado,String name) {
+		repository.updateState(estado,name);
 	}
 	
 	@Override

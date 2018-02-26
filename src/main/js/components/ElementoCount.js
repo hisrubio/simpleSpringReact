@@ -1,7 +1,7 @@
 import React from "react";
 
 
-export default class UserCount extends React.Component {
+export default class ElementoCount extends React.Component {
 
 	constructor(props) {
 		super(props)
