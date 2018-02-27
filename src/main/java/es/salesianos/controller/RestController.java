@@ -27,16 +27,16 @@ import es.salesianos.service.Services;
 @RequestMapping(value = "/api/v1/element")
 public class RestController {
 
-	private static Logger log = LogManager.getLogger(PruebaController.class);
+	private static Logger log = LogManager.getLogger(RestController.class);
 
 	@Autowired
 	private Services service;
 	
-//	@RequestMapping(value = "/cambiar/{tablename}/", method = RequestMethod.GET)
-//	ResponseEntity delete(@PathVariable String tablename, @RequestParam(required = false) String id) {
-//		service.updateState("Liquido",id);
-//		return new ResponseEntity(HttpStatus.OK);
-//	}
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public ResponseEntity delete(@RequestParam(required = false) String id) {
+		service.delete(id);
+		return new ResponseEntity(HttpStatus.OK);
+	}
 	
 	@RequestMapping(value = "/cambiar", method = RequestMethod.GET)
 	public ResponseEntity cambiar(@RequestParam(required = false) String id) {

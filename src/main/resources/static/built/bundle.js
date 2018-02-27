@@ -24564,7 +24564,7 @@
 	
 	var _Elemento2 = _interopRequireDefault(_Elemento);
 	
-	var _ElementoCount = __webpack_require__(229);
+	var _ElementoCount = __webpack_require__(230);
 	
 	var _ElementoCount2 = _interopRequireDefault(_ElementoCount);
 	
@@ -24650,6 +24650,10 @@
 	
 	var _Boton2 = _interopRequireDefault(_Boton);
 	
+	var _Delete = __webpack_require__(229);
+	
+	var _Delete2 = _interopRequireDefault(_Delete);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24681,7 +24685,8 @@
 	        " estado: ",
 	        elemento.estado,
 	        _react2.default.createElement("br", null),
-	        _react2.default.createElement(_Boton2.default, { id: elemento.name })
+	        _react2.default.createElement(_Boton2.default, { id: elemento.name }),
+	        _react2.default.createElement(_Delete2.default, { id: elemento.name })
 	      );
 	    }
 	  }]);
@@ -24698,7 +24703,7 @@
 	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
-			value: true
+		value: true
 	});
 	exports.default = undefined;
 	
@@ -24717,42 +24722,102 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var Boton = function (_React$Component) {
-			_inherits(Boton, _React$Component);
+		_inherits(Boton, _React$Component);
 	
-			function Boton(props) {
-					_classCallCheck(this, Boton);
+		function Boton(props) {
+			_classCallCheck(this, Boton);
 	
-					var _this = _possibleConstructorReturn(this, (Boton.__proto__ || Object.getPrototypeOf(Boton)).call(this, props));
+			var _this = _possibleConstructorReturn(this, (Boton.__proto__ || Object.getPrototypeOf(Boton)).call(this, props));
 	
-					_this.state = { name: props.id };
-					return _this;
+			_this.state = { name: props.id };
+			return _this;
+		}
+	
+		_createClass(Boton, [{
+			key: "boton",
+			value: function boton(event) {
+				console.log(this.state.name);
+				fetch('/api/v1/element/cambiar/?id=' + this.state.name);
 			}
+		}, {
+			key: "render",
+			value: function render() {
 	
-			_createClass(Boton, [{
-					key: "boton",
-					value: function boton(event) {
-							console.log(this.state.name);
-							fetch('/api/v1/element/cambiar/?id=' + this.state.name);
-					}
-			}, {
-					key: "render",
-					value: function render() {
+				return _react2.default.createElement(
+					"button",
+					{ onClick: this.boton.bind(this) },
+					"cambiar estado"
+				);
+			}
+		}]);
 	
-							return _react2.default.createElement(
-									"button",
-									{ onClick: this.boton.bind(this) },
-									"cambiar estado"
-							);
-					}
-			}]);
-	
-			return Boton;
+		return Boton;
 	}(_react2.default.Component);
 	
 	exports.default = Boton;
 
 /***/ }),
 /* 229 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Delete = function (_React$Component) {
+	  _inherits(Delete, _React$Component);
+	
+	  function Delete(props) {
+	    _classCallCheck(this, Delete);
+	
+	    var _this = _possibleConstructorReturn(this, (Delete.__proto__ || Object.getPrototypeOf(Delete)).call(this, props));
+	
+	    _this.state = { name: props.id };
+	    return _this;
+	  }
+	
+	  _createClass(Delete, [{
+	    key: "delete",
+	    value: function _delete(event) {
+	      console.log(this.state.name);
+	      fetch('/api/v1/element/delete/?id=' + this.state.name);
+	    }
+	  }, {
+	    key: "render",
+	    value: function render() {
+	
+	      return _react2.default.createElement(
+	        "button",
+	        { onClick: this.delete.bind(this) },
+	        "delete"
+	      );
+	    }
+	  }]);
+	
+	  return Delete;
+	}(_react2.default.Component);
+	
+	exports.default = Delete;
+
+/***/ }),
+/* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";

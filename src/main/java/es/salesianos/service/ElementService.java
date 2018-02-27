@@ -34,10 +34,17 @@ public class ElementService implements es.salesianos.service.Services {
 		return repository.listElementsByState(estado);
 	}
 	
+	@Override
+	public void delete(String id) {
+		repository.delete(id);
+	}
+	
 	public ElementoRepository getRepository() {
 		return repository;
 	}
 	public void setRepository(ElementoRepository repository) {
 		this.repository = repository;
 	}
+
+	
 }

@@ -12,7 +12,7 @@ export default class Boton extends React.Component {
 				console.log(this.state.name)
         fetch('/api/v1/element/cambiar/?id='+this.state.name)
         
-    }
+		}
 
   render() {
 		

@@ -11,6 +11,8 @@ public interface Services {
 	void insertElement(Elemento elemento);
 
 	void updateState(String estado,String id);
+	
+	void delete(String id);
 
 	List<Elemento> listElementsByState(String estado);
 }
